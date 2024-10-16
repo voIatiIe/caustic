@@ -1,0 +1,59 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build Engine",
+            "linux": {
+                "command": "${workspaceFolder}/engine/build.sh"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/engine/build.sh"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/engine"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build Testbed",
+            "linux": {
+                "command": "${workspaceFolder}/testbed/build.sh"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/testbed/build.sh"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/testbed"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build Everything",
+            "linux": {
+                "command": "${workspaceFolder}/build-all.sh"
+            },
+            "osx": {
+                "command": "${workspaceFolder}/build-all.sh"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
