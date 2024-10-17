@@ -6,15 +6,15 @@ mkdir -p ../bin
 
 cFiles=$(find . -type f -name "*.c")
 
+assembly="testbed"
+
 compilerFlags="-g -fPIC"
 includeFlags="-Isrc -I../engine/src/"
 linkerFlags="-L../bin/ -lengine -Wl,-rpath,."
-defines="-D_DEBUG -DCIMPORT"
-
-assembly="testbed"
+defines="-D_DEBUG"
 
 echo "Building testbed..."
 
-clang $cFiles $compilerFlags -o ../bin/testbed $includeFlags $linkerFlags $defines
+clang $defines $includeFlags $linkerFlags $cFiles $compilerFlags -o ../bin/testbed
 
 echo "${assembly} built!"

@@ -15,6 +15,6 @@ defines="-D_DEBUG -DCEXPORT"
 
 echo "Building ${assembly}..."
 
-clang $cFiles $compilerFlags -o ../bin/lib${assembly}.dylib $includeFlags $linkerFlags $defines
+clang $defines $includeFlags $linkerFlags $cFiles $compilerFlags -o ../bin/lib${assembly}.dylib
 
 echo "${assembly} built!"

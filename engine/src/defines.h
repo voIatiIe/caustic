@@ -64,14 +64,12 @@ STATIC_ASSERT(sizeof(f64) == 8, "Expected f64 to be 8 bytes.");
 #endif
 
 #ifdef CEXPORT
-    // Exports
     #ifdef _MSC_VER
         #define CAPI __declspec(dllexport)
     #else
         #define CAPI __attribute__((visibility("default")))
     #endif
 #else
-    // Imports
     #ifdef _MSC_VER
         #define CAPI __declspec(dllimport)
     #else
