@@ -9,7 +9,13 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin/",
-            "environment": [],
+            "MIMode": "lldb",
+            "environment": [
+                {
+                    "name": "DYLD_LIBRARY_PATH",
+                    "value": "/Users/konstantin/VulkanSDK/1.2.198.1/macOS/lib"
+                }
+            ]
         },
         {
             "name": "(OSX) Launch",
@@ -19,7 +25,13 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/bin/",
-            "environment": [],
+            "MIMode": "lldb",
+            "environment": [
+                {
+                    "name": "DYLD_LIBRARY_PATH",
+                    "value": "/Users/konstantin/VulkanSDK/1.2.198.1/macOS/lib"
+                }
+            ]
         },
     ]
 }
