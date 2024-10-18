@@ -1,5 +1,6 @@
 #include "logger.h"
 #include "asserts.h"
+#include "platform/platform.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -27,11 +28,15 @@ void log_output(log_level level, const char* message, ...) {
     va_end(args);
 
     char out_message_[msg_len];
-    sprintf(out_message_, "%s%s\n", level_strings[level], out_message);
+    sprintf(out_message_, "%s%s", level_strings[level], out_message);
 
-    printf("%s", out_message_);
+    if (level <= LOG_LEVEL_ERROR) {
+        platform_console_write(out_message_, level);
+    } else {
+        platform_console_write_error(out_message_, level);
+    }
 }
 
 void assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
-    CFATAL("Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
+    log_output(LOG_LEVEL_FATAL, "Assertion Failure: %s, message: '%s', in file: %s, line: %d", expression, message, file, line);
 }

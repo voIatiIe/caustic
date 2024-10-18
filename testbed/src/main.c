@@ -1,11 +1,10 @@
-#include <test.h>
-
 #include <core/logger.h>
 #include <platform/platform.h>
 
 
 int main(void) {
-    print("Hello, world!\n");
+    CERROR("Error");
+    CINFO("Info");
 
     platform_state state;
 

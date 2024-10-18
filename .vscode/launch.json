@@ -8,6 +8,7 @@
             "program": "${workspaceFolder}/bin/testbed",
             "args": [],
             "stopAtEntry": false,
+            // "externalConsole": true,
             "cwd": "${workspaceFolder}/bin/",
             "MIMode": "lldb",
             "environment": [
@@ -24,6 +25,7 @@
             "program": "${workspaceFolder}/bin/testbed",
             "args": [],
             "stopAtEntry": false,
+            // "externalConsole": true,
             "cwd": "${workspaceFolder}/bin/",
             "MIMode": "lldb",
             "environment": [
