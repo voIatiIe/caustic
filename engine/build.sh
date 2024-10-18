@@ -4,11 +4,11 @@ set -e
 
 mkdir -p ../bin
 
-cFiles=$(find . -type f -name "*.c")
+cFiles=$(find . -type f \( -name "*.c" -o -name "*.m" \))
 
 assembly="engine"
 
-compilerFlags="-g -fPIC -dynamiclib -install_name @rpath/lib${assembly}.dylib"
+compilerFlags="-g -fPIC -fvisibility=hidden -dynamiclib -install_name @rpath/lib${assembly}.dylib -framework Cocoa -framework QuartzCore"
 includeFlags="-Isrc -I$VULKAN_SDK/include"
 linkerFlags="-lvulkan -L$VULKAN_SDK/lib"
 defines="-D_DEBUG -DCEXPORT"

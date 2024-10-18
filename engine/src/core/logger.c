@@ -21,10 +21,10 @@ void log_output(log_level level, const char* message, ...) {
     char out_message[msg_len];
     memset(out_message, 0, sizeof(out_message));
 
-    __builtin_va_list arg_ptr;
-    va_start(arg_ptr, message);
-    vsnprintf(out_message, msg_len, message, arg_ptr);
-    va_end(arg_ptr);
+    __builtin_va_list args;
+    va_start(args, message);
+    vsnprintf(out_message, msg_len, message, args);
+    va_end(args);
 
     char out_message_[msg_len];
     sprintf(out_message_, "%s%s\n", level_strings[level], out_message);
@@ -33,5 +33,5 @@ void log_output(log_level level, const char* message, ...) {
 }
 
 void assertion_failure(const char* expression, const char* message, const char* file, i32 line) {
-    KFATAL("Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
+    CFATAL("Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
 }
