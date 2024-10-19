@@ -91,6 +91,8 @@ typedef struct internal_state {
 
 @interface ContentView : NSView <NSTextInputClient> {
     NSWindow* window;
+    NSTrackingArea* trackingArea;
+    NSMutableAttributedString* markedText;
 }
 
 - (instancetype)initWithWindow:(NSWindow*)initWindow;
@@ -108,8 +110,19 @@ typedef struct internal_state {
     return self;
 }
 
-// TODO: why runtime error without it?
+- (void)insertText:(id)string replacementRange:(NSRange)replacementRange {}
+- (void)setMarkedText:(id)string selectedRange:(NSRange)selectedRange replacementRange:(NSRange)replacementRange {}
+- (void)unmarkText {}
+
+static const NSRange kEmptyRange = { NSNotFound, 0 };
+- (NSRange)selectedRange {return kEmptyRange;}
+- (NSRange)markedRange {return kEmptyRange;}
+- (BOOL)hasMarkedText {return FALSE;}
+- (nullable NSAttributedString *)attributedSubstringForProposedRange:(NSRange)range actualRange:(nullable NSRangePointer)actualRange {return nil;}
+
 - (NSArray<NSAttributedStringKey> *)validAttributesForMarkedText {return [NSArray array];}
+- (NSRect)firstRectForCharacterRange:(NSRange)range actualRange:(nullable NSRangePointer)actualRange {return NSMakeRect(0, 0, 0, 0);}
+- (NSUInteger)characterIndexForPoint:(NSPoint)point {return 0;}
 
 @end // ContentView
 
@@ -251,7 +264,7 @@ void platform_free(void* block, b8 aligned) {
 }
 
 void* platform_zero_memory(void* block, u64 size) {
-    memset(block, 0, size);
+    return memset(block, 0, size);
 }
 
 void* platform_copy_memory(void* dest, const void* source, u64 size) {
